@@ -1,0 +1,12 @@
+
+button {
+    border-radius: 2px;
+    background-color: #1876d0;
+    padding: 1%;
+    width: 12%;
+    margin-top: 5%;
+    border: none;
+    color: white;
+    /* border-radius: 2px; */
+    font-weight: 800;
+}
