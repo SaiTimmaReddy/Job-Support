@@ -17,6 +17,15 @@ class StudentStatus(models.Model):
         on_delete=models.CASCADE,
         related_name="related_student_statuses",
     )
+
+    name = models.CharField(
+        "Name",
+        blank=False,
+        null=False,
+        max_length=50,
+        db_index=True,
+    )
+
     status = models.CharField(
         "Status",
         blank=False,

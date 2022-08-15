@@ -14,7 +14,13 @@ from apps.users.models import User
 class StudentOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ("id", "name")
+        fields = ["id"]
+
+
+# class StudentNameSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Student
+#         fields = ["name"]
 
 
 class UserOptionSerializer(serializers.ModelSerializer):
@@ -27,16 +33,12 @@ class StudentStatusSerializer(serializers.ModelSerializer):
     # studentstatus = serializers.CharField("get_studentstatus")
     # student_name = StudentNameSerializer(read_only=True, many=True)
     student = StudentOptionSerializer(read_only=True)
+
     created_by = UserOptionSerializer(read_only=True)
 
     class Meta:
         model = StudentStatus
-        fields = (
-            "student",
-            "status",
-            "updated_by",
-            "created_at",
-        )
+        fields = ("student", "name", "status", "updated_by", "created_at")
 
     # def get_studentstatus(self, obj):
     #     return obj.studentstatus.all().values("name")

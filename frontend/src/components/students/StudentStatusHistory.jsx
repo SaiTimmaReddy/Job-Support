@@ -42,7 +42,7 @@ const StudentStatusHistory = () => {
                         {status.student_status_history &&
                             status.student_status_history.map((history, index) => (
                                 <StyledTableRow key={index} widht="100%">
-                                    <StyledTableCell align="center">{history && history.student.name}</StyledTableCell>
+                                    <StyledTableCell align="center">{history && history.name}</StyledTableCell>
 
                                     <StyledTableCell align="center">{history && history.status}</StyledTableCell>
                                     <StyledTableCell align="center">

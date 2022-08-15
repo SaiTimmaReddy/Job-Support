@@ -91,7 +91,7 @@ export default function StudentTable(props) {
                                     <StyledTableCell align="center">
                                         {' '}
                                         <CustomButton
-                                            text="status"
+                                            text="History"
                                             variant="outlined"
                                             align="center"
                                             onClick={() => history.push(`/history/${student.id}`)}

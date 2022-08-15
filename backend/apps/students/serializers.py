@@ -22,7 +22,7 @@ class StudentListSerializer(serializers.ModelSerializer):
 class StudentOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ("id", "name")
+        fields = ["id", "name"]
 
 
 class StudentUpdateSerializer(serializers.ModelSerializer):
@@ -105,12 +105,14 @@ class StudentUpdateSerializer(serializers.ModelSerializer):
             StudentStatus.objects.create(
                 student=instance,
                 status=validated_data["status"],
+                name=validated_data["name"],
                 updated_by=self.context["request"].login_user,
             )
         if instance.name != validated_data["name"]:
             StudentStatus.objects.create(
                 student=instance,
                 name=validated_data["name"],
+                status=validated_data["status"],
                 updated_by=self.context["request"].login_user,
             )
 
@@ -120,16 +122,18 @@ class StudentUpdateSerializer(serializers.ModelSerializer):
 class StudentStatusSerializer(serializers.ModelSerializer):
     # studentstatus = serializers.CharField("get_studentstatus")
     # student_name = StudentNameSerializer(read_only=True, many=True)
-    student = StudentOptionSerializer(read_only=True)
+    # student = StudentOptionSerializer(read_only=True)
+
     updated_by = UserOptionSerializer(read_only=True)
 
     class Meta:
         model = StudentStatus
-        fields = ("student", "status", "updated_by", "created_at")
+        fields = ("student", "name", "status", "updated_by", "created_at")
 
 
 class StudentOptionStatusSerializer(serializers.ModelSerializer):
     student_status_history = StudentStatusSerializer(source="student_status", many=True)
+    # name = StudentNameSerializer(source="student_name_history")
 
     class Meta:
         model = Student

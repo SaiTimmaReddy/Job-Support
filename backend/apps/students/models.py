@@ -197,6 +197,6 @@ class Student(models.Model):
     def student_status(self):
         return self.related_student_statuses.order_by("-created_at").all()
 
-    # @property
-    # def student_name_history(self):
-    #     return self.related_student_name.all()
+    @property
+    def student_name_history(self):
+        return self.related_student_name.all()
