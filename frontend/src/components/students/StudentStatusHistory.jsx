@@ -32,6 +32,7 @@ const StudentStatusHistory = () => {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell align="center">Student Name</StyledTableCell>
+                            <StyledTableCell align="center">Student Id</StyledTableCell>
                             <StyledTableCell align="center">Status</StyledTableCell>
                             <StyledTableCell align="center">Updated By</StyledTableCell>
                             <StyledTableCell align="center">Updated At</StyledTableCell>
@@ -43,7 +44,9 @@ const StudentStatusHistory = () => {
                             status.student_status_history.map((history, index) => (
                                 <StyledTableRow key={index} widht="100%">
                                     <StyledTableCell align="center">{history && history.name}</StyledTableCell>
-
+                                    <StyledTableCell align="center">
+                                        {history && history.history_student_id}
+                                    </StyledTableCell>
                                     <StyledTableCell align="center">{history && history.status}</StyledTableCell>
                                     <StyledTableCell align="center">
                                         {history && history.updated_by.user_name}

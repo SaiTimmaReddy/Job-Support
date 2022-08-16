@@ -25,6 +25,11 @@ class StudentStatus(models.Model):
         max_length=50,
         db_index=True,
     )
+    history_student_id = models.IntegerField(
+        "Student ID",
+        blank=True, null=True,
+        max_length=50,
+    )
 
     status = models.CharField(
         "Status",
@@ -36,4 +41,5 @@ class StudentStatus(models.Model):
     updated_by = models.ForeignKey(
         User, blank=False, null=False, on_delete=models.CASCADE
     )
-    created_at = models.DateTimeField("create_at", blank=False, auto_now_add=True)
+    created_at = models.DateTimeField(
+        "create_at", blank=False, auto_now_add=True)

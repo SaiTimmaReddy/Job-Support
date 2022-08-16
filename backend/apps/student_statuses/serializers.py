@@ -38,7 +38,8 @@ class StudentStatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentStatus
-        fields = ("student", "name", "status", "updated_by", "created_at")
+        fields = ("student", "name", 'history_student_id',
+                  "status", "updated_by", "created_at")
 
     # def get_studentstatus(self, obj):
     #     return obj.studentstatus.all().values("name")

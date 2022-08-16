@@ -33,6 +33,7 @@ class Student(models.Model):
         null=False,
         unique=True,
         default=None,
+        max_length=50,
     )
     email = models.EmailField(
         "Email", blank=False, null=False, unique=True, db_index=True
@@ -60,21 +61,24 @@ class Student(models.Model):
     entrance_ceremony_date = models.DateTimeField(
         "Entrance Ceremony Date", blank=True, null=True
     )
-    graduated_date = models.DateTimeField("Graduated Date", blank=True, null=True)
+    graduated_date = models.DateTimeField(
+        "Graduated Date", blank=True, null=True)
     prepared_by_dev_team_date = models.DateTimeField(
         "Date of Preparation Completed by Developer Team", blank=True, null=True
     )
     application_started_date = models.DateTimeField(
         "Application Started Date", blank=True, null=True
     )
-    got_offer_date = models.DateTimeField("Get Offer Date", blank=True, null=True)
+    got_offer_date = models.DateTimeField(
+        "Get Offer Date", blank=True, null=True)
     course = models.CharField(
         "Course", blank=False, null=False, max_length=50, choices=COURSE, db_index=True
     )
     gender = models.CharField(
         "Gender", blank=False, null=False, max_length=50, choices=GENDER, db_index=True
     )
-    certification_url = models.URLField("Certification Url", blank=True, null=True)
+    certification_url = models.URLField(
+        "Certification Url", blank=True, null=True)
     resume_questionnaire_status = models.CharField(
         "Resume Questionnaire Status",
         choices=RESUME_QUESTIONNAIRE_STATUS,
@@ -120,7 +124,8 @@ class Student(models.Model):
     linkedin_password = models.CharField(
         "LinkedIn Password", blank=True, null=True, max_length=50
     )
-    indeed_id = models.EmailField("Indeed Email", blank=True, null=True, max_length=50)
+    indeed_id = models.EmailField(
+        "Indeed Email", blank=True, null=True, max_length=50)
     indeed_password = models.CharField(
         "Indeed Password", blank=True, null=True, max_length=50
     )
@@ -136,7 +141,8 @@ class Student(models.Model):
     glassdoor_password = models.CharField(
         "Glassdoor Password", blank=True, null=True, max_length=50
     )
-    dice_id = models.EmailField("Dice Email", blank=True, null=True, max_length=50)
+    dice_id = models.EmailField(
+        "Dice Email", blank=True, null=True, max_length=50)
     dice_password = models.CharField(
         "Dice Password", blank=True, null=True, max_length=50
     )
@@ -186,7 +192,8 @@ class Student(models.Model):
     created_at = models.DateTimeField(
         "Created Datetime", blank=False, auto_now_add=True
     )
-    updated_at = models.DateTimeField("Updated Datetime", blank=False, auto_now=True)
+    updated_at = models.DateTimeField(
+        "Updated Datetime", blank=False, auto_now=True)
 
     updated_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 

@@ -1,3 +1,4 @@
+from unicodedata import name
 from apps.student_statuses.models import StudentStatus
 from .models import Student
 from rest_framework import serializers
@@ -100,19 +101,13 @@ class StudentUpdateSerializer(serializers.ModelSerializer):
         ):
             validated_data["prepared_by_dev_team_date"] = timezone.now()
 
-        if instance.status != validated_data["status"]:
+        if instance.status != validated_data["status"] or instance.name != validated_data["name"] or instance.student_id != validated_data["student_id"]:
 
             StudentStatus.objects.create(
                 student=instance,
                 status=validated_data["status"],
                 name=validated_data["name"],
-                updated_by=self.context["request"].login_user,
-            )
-        if instance.name != validated_data["name"]:
-            StudentStatus.objects.create(
-                student=instance,
-                name=validated_data["name"],
-                status=validated_data["status"],
+                history_student_id=validated_data["student_id"],
                 updated_by=self.context["request"].login_user,
             )
 
@@ -128,11 +123,13 @@ class StudentStatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentStatus
-        fields = ("student", "name", "status", "updated_by", "created_at")
+        fields = ("student", "name", 'history_student_id',
+                  "status", "updated_by", "created_at")
 
 
 class StudentOptionStatusSerializer(serializers.ModelSerializer):
-    student_status_history = StudentStatusSerializer(source="student_status", many=True)
+    student_status_history = StudentStatusSerializer(
+        source="student_status", many=True)
     # name = StudentNameSerializer(source="student_name_history")
 
     class Meta:
